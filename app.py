@@ -34,7 +34,7 @@ elif menu == "新規登録":
         school = st.text_input("学校名")
         title = st.text_input("探究タイトル")
         category = st.selectbox("分野", ["人文", "情報", "国際", "地域", "歴史", "自然科学", "その他"])
-        year = st.number_input("年度", value=2024)
+        year = st.number_input("年度", value=2026)
         
         submitted = st.form_submit_button("送信")
         
