@@ -41,22 +41,12 @@ elif menu == "新しく登録する":
         
         submitted = st.form_submit_button("送信")
         
-        if submitted:
+if submitted:
             if author and title:
                 try:
-                    # 400エラー対策：スプレッドシートの1行目と「完全に」一致させるデータを作成
-                    new_data = pd.DataFrame([{
-                        "筆者名": author,
-                        "探究タイトル": title,
-                        "分野": category,
-                        "作成年度": int(year),
-                        "学校名": school
-                    }])
-                    
-                    # 書き込み実行（worksheet名は必ず Sheet1）
-                    conn.create(spreadsheet=SPREADSHEET_URL, worksheet="Sheet1", data=new_data)
-                    st.success("成功しました！")
-                    st.balloons()
+                    # ライブラリを介さず直接Googleのフォーム形式で送るか、
+                    # あるいは一旦、読み込み表示ができることだけ確認しましょう。
+                    st.warning("Googleのセキュリティ制限により、この方法での書き込みには『鍵ファイル』の設定が必要です。")
+                    st.info("まずは『データを見る』が正常に動くか確認してください。")
                 except Exception as e:
-                    st.error(f"書き込み失敗: {e}")
-                    st.info("スプレッドシートの1行目が『筆者名』『探究タイトル』『分野』『作成年度』『学校名』になっているか確認してください。")
+                    st.error(f"エラー: {e}")
