@@ -26,7 +26,7 @@ if menu == "データを見る・探す":
     
     try:
         # スプレッドシートを読み込む（最新の状態を取得するためキャッシュは短めに設定）
-        df = conn.read(spreadsheet=SPREADSHEET_URL, worksheet="Sheet1", ttl="1m")
+        df = conn.read(spreadsheet=SPREADSHEET_URL, worksheet="Sheet1")
         
         if df.empty:
             st.info("まだデータが登録されていません。最初の1件を登録してみましょう！")
