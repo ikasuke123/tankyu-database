@@ -31,16 +31,31 @@ with st.form("my_form"):
     
     submitted = st.form_submit_button("送信")
     
-    if submitted:
+if submitted:
         if author and title:
-            # 書き込み用には GSheetsConnection を使用
             try:
+                # 接続を再宣言
                 conn = st.connection("gsheets", type=GSheetsConnection)
+                
+                # 新しいデータを作る（1行目と名前を完全一致させる）
+                new_row = pd.DataFrame([{
+                    "筆者名": str(author),
+                    "探究タイトル": str(title),
+                    "分野": str(category),
+                    "作成年度": int(year),
+                    "学校名": str(school)
+                }])
+                
+                # スプレッドシートの既存データを読み込み
                 existing_data = conn.read(spreadsheet="https://docs.google.com/spreadsheets/d/1_GJVkAjsXGl7oojSVX31l49sJDkalMUPOnx8Xhxw_SQ/edit", worksheet="Sheet1")
-                new_row = pd.DataFrame([{"筆者名": author, "探究タイトル": title, "分野": category, "作成年度": year, "学校名": school}])
+                
+                # データをドッキング
                 updated_df = pd.concat([existing_data, new_row], ignore_index=True)
+                
+                # 書き込み実行
                 conn.update(spreadsheet="https://docs.google.com/spreadsheets/d/1_GJVkAjsXGl7oojSVX31l49sJDkalMUPOnx8Xhxw_SQ/edit", worksheet="Sheet1", data=updated_df)
-                st.success("保存完了！ブラウザを更新して確認してください。")
+                
+                st.success("保存完了！")
                 st.balloons()
             except Exception as e:
                 st.error(f"書き込み失敗: {e}")
