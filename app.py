@@ -19,7 +19,8 @@ if menu == "データを見る・探す":
     st.header("🔍 登録データ一覧")
     try:
         # 読み込みから ttl 設定を削除（最もシンプルな形に戻す）
-        df = conn.read(spreadsheet=SPREADSHEET_URL, worksheet="Sheet1")
+        csv_url = SPREADSHEET_URL.replace("/edit", "/export?format=csv")
+        df = pd.read_csv(csv_url)
         
         if df is not None and not df.empty:
             st.dataframe(df, use_container_width=True)
