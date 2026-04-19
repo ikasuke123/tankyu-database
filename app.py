@@ -41,7 +41,7 @@ elif menu == "新規登録":
         if submitted:
             if author and title:
                 # 既存データ読み込み
-                existing_data = conn.read(spreadsheet=spreadsheet_url, worksheet="sheet1")
+                existing_data = conn.read(spreadsheet=spreadsheet_url, worksheet="Sheet1")
                 # 新規データ作成
                 new_row = pd.DataFrame([{
                     "筆者名": author,
@@ -53,7 +53,7 @@ elif menu == "新規登録":
                 # 結合
                 updated_df = pd.concat([existing_data, new_row], ignore_index=True)
                 # 書き込み
-                conn.update(spreadsheet=spreadsheet_url, worksheet="sheet1", data=updated_df)
+                conn.update(spreadsheet=spreadsheet_url, worksheet="Sheet1", data=updated_df)
                 st.success("スプレッドシートに保存しました！")
                 st.balloons()
             else:
