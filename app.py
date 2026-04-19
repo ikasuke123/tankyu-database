@@ -9,7 +9,7 @@ st.title("🎓 探究情報データベース")
 st.write("全国の生徒がつながる探究学習のプラットフォーム")
 
 # スプレッドシート接続（URLは後で設定ファイルに書くこともできますが、まずは直書き）
-spreadsheet_url = "https://docs.google.com/spreadsheets/d/1d9JMHPDDbXdfF45-C-QCbrN6cqSJhZyAAlKahma7NVE/edit"
+spreadsheet_url = "https://docs.google.com/spreadsheets/d/1_GJVkAjsXGl7oojSVX31l49sJDkalMUPOnx8Xhxw_SQ/edit"
 conn = st.connection("gsheets", type=GSheetsConnection)
 
 # サイドバーメニュー
