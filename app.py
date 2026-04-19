@@ -8,7 +8,7 @@ st.set_page_config(page_title="探究DB", layout="wide")
 st.title("🎓 探究情報データベース")
 
 # URLは必ず /edit で終わるもの
-SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1_GJVkAjsXGl7oojSVX31l49sJDkalMUPOnx8Xhxw_SQ/edit"
+SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1_GJVkAjsXGl7oojSVX31l49sJDkalMUPOnx8Xhxw_SQ/gviz/tq?tqx=out:csv"
 
 # 接続
 conn = st.connection("gsheets", type=GSheetsConnection)
