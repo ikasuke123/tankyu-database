@@ -19,7 +19,7 @@ if menu == "ホーム":
     st.header("🔍 登録データ一覧")
     try:
         # データの読み込み
-        df = conn.read(spreadsheet=spreadsheet_url, worksheet="シート1")
+        df = conn.read(spreadsheet=spreadsheet_url, worksheet="Sheet1")
         if not df.empty:
             st.dataframe(df, use_container_width=True)
         else:
@@ -33,7 +33,7 @@ elif menu == "新規登録":
         author = st.text_input("筆者名")
         school = st.text_input("学校名")
         title = st.text_input("探究タイトル")
-        category = st.selectbox("分野", ["人文", "情報", "国際", "地域", "歴史", "自然科学", "その他"])
+        category = st.selectbox("分野", ["保育・教育", "食", "旅行・観光", "国際", "スポーツ・運動", "地理", "歴史", "自然・環境", "動物", "ICT・情報", "国際", "芸術", "文化", "ビジネス", "地域", "防災・復興", "科学・理科","工学", "文学", "介護", "看護・医療","その他"])
         year = st.number_input("年度", value=2026)
         
         submitted = st.form_submit_button("送信")
